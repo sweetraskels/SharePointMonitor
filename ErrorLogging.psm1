@@ -26,3 +26,20 @@ Stop-Transcript
 
 Export-ModuleMember -Function 'FSErrorLogginStart'
 Export-ModuleMember -Function 'FSErrorLogginStop'
+
+
+
+
+
+###Usage 
+#include this in your ps file
+Import-Module "ErrorLogging.psm1"
+$_gPath = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
+FSErrorLogginStart -Directory "$_gPath\Log" -FileName "Prefix_" -Environment "Development"
+
+
+
+
+#after the execution
+FSErrorLogginStop
+Remove-Module -Name ErrorLogging
